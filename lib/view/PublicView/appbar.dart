@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
+import 'package:project/Riverpod/constants.dart';
 import 'package:project/view/PublicView/complaint_history.dart';
 import 'package:project/view/PublicView/historypage.dart';
 import 'package:project/view/PublicView/mycomplaintspage.dart/complaintspage.dart';
@@ -7,6 +9,7 @@ import 'package:project/view/PublicView/profile_screen.dart';
 import 'package:project/widgets/sidebar.dart';
 
 import '../../Riverpod/Models/userModel.dart';
+import '../../Routes/navigator.dart';
 import 'fullnews.dart';
 import 'guideliness.dart';
 import 'home.dart';
@@ -88,6 +91,13 @@ class _AppbarState extends State<Appbar> {
           // centerTitle: true,
           backgroundColor: Colors.blue,
           actions: [
+            IconButton(
+                onPressed: () async {
+                  await setValue(accessToken, "");
+                  await setValue(userType, "");
+                  AppNavigatorService.pushNamedAndRemoveUntil('login');
+                },
+                icon: Icon(Icons.logout)),
             IconButton(onPressed: () {}, icon: const Icon(Icons.notifications))
           ],
         ),
